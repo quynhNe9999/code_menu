@@ -19,17 +19,22 @@
 <body class="bg-silver-300">
     <div class="content">
         <div class="brand">
-            <a class="link" href="index">Quan Ly Nha Hang</a>
+            <a class="link" href="index" th:utext="#{label.logo.res}"></a>
         </div>
         <form id="register-form" th:object="${myForm}" method="POST">
-            <h2 class="login-title">Sign Up</h2>
+        <div style="text-align: right;padding:5px;margin:5px 0px;">
+         <a th:href="@{/register?lang=en}">English</a>
+         &nbsp;|&nbsp;
+         <a th:href="@{/register?lang=vi}">Vietnamese</a>
+      </div>
+            <h2 class="login-title" th:uText="#{label.signupform}"></h2>
             <h2 th:if="${myForm.signInProvider != null}">Signup with <span th:utex="${myForm.signInProvider}"></span></h2>
             <input type="hidden" th:field="*{userId}"  />
             <input type="hidden" th:field="*{signInProvider}" />  
             <div class="row">
                 <div class="col-6">
                     <div class="form-group">
-                        <input class="form-control" type="text" th:field="*{firstName}" placeholder="First Name">
+                        <input class="form-control" type="text" th:field="*{firstName}" th:placeholder="#{label.firstName}">
                         <span class="error-message"
                      th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">..</span>
         
@@ -37,7 +42,7 @@
                 </div>
                 <div class="col-6">
                     <div class="form-group">
-                        <input class="form-control" type="text" th:field="*{lastName}" placeholder="Last Name">
+                        <input class="form-control" type="text" th:field="*{lastName}" th:placeholder="#{label.lastName}">
                         <span class="error-message"
                      th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">..</span>
         
@@ -45,19 +50,19 @@
                 </div>
             </div>
             <div class="form-group">
-                <input class="form-control" type="text" th:field="*{userName}" placeholder="Username">
+                <input class="form-control" type="text" th:field="*{userName}" th:placeholder="#{label.username}" >
                 <span class="error-message"
                      th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}">..</span>
         
             </div>
             <div class="form-group">
-                <input class="form-control" type="email" th:field="*{email}" placeholder="Email" autocomplete="off">
+                <input class="form-control" type="email" th:field="*{email}" th:placeholder="#{label.email}" autocomplete="off">
                 <span class="error-message"
                      th:if="${#fields.hasErrors('email')}" th:errors="*{email}">..</span>
         
             </div>
             <div class="form-group">
-                <input class="form-control" id="password" type="password" th:field="*{password}" placeholder="Password">
+                <input class="form-control" id="password" type="password" th:field="*{password}" th:placeholder="#{label.password}">
                 <span class="error-message"
                      th:if="${#fields.hasErrors('password')}" th:errors="*{password}">..</span>
         
@@ -65,14 +70,14 @@
 
             <div class="form-group text-left">
                 <label class="ui-checkbox ui-checkbox-info">
-                    <input type="checkbox" name="agree">
-                    <span class="input-span"></span>I agree the terms and policy</label>
+                    <input type="checkbox" name="agree" th:uText="#{checkbox.ternAndPolicy}">
+                    <span class="input-span" ></span></label>
             </div>
             <div class="form-group">
-                <button class="btn btn-info btn-block" type="submit">Sign up</button>
+                <button class="btn btn-info btn-block" type="submit" th:uText="#{button.signup}">Sign up</button>
             </div>
             <div class="social-auth-hr">
-                <span>Or Sign up with</span>
+                <span th:uText="#{label.signUpWith}"></span>
             </div>
             <div class="text-center social-auth m-b-20">
                 <a class="btn btn-social-icon btn-twitter m-r-5"  th:href="@{/auth/twitter}"><i class="fa fa-twitter"></i></a>
@@ -81,8 +86,9 @@
                 <a class="btn btn-social-icon btn-linkedin m-r-5"  th:href="@{/auth/linkedin}"><i class="fa fa-linkedin"></i></a>
                 <a class="btn btn-social-icon btn-vk" href="javascript:;"><i class="fa fa-vk"></i></a>
             </div>
-            <div class="text-center">Already a member?
-                <a class="color-blue" href="login">Login here</a>
+            <div class="text-center">
+            <a th:uText="#{label.AlreadyAMember}"></a>
+            <a class="color-blue" href="login" th:uText="#{label.login}"></a>
             </div>
         </form>
     </div>
@@ -113,6 +119,10 @@
                     last_name: {
                         required: true,
                         minlength: 2
+                    },
+                    username: {
+                        required: true,
+                        username: true
                     },
                     email: {
                         required: true,

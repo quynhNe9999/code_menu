@@ -19,34 +19,39 @@
 <body class="bg-silver-300">
     <div class="content">
         <div class="brand">
-            <a class="link" href="index">Quan Ly Nha Hang</a>
+            <a class="link" href="index" th:utext="#{label.logo.res}" ></a>
         </div>
-        
-        <form id="login-form" name='f' th:action="@{/j_spring_security_check}" method='POST'>
-            <h2 class="login-title">Log in</h2>
+              
+		 <form id="login-form" name='f' th:action="@{/j_spring_security_check}" method='POST'>
+        <div style="text-align: right;padding:5px;margin:5px 0px;">
+         <a th:href="@{/login?lang=en}">English</a>
+         &nbsp;|&nbsp;
+         <a th:href="@{/login?lang=vi}">Vietnamese</a>
+      </div>
+            <h2 class="login-title" th:uText="#{label.loginform}"></h2>
             <div class="form-group">
                 <div class="input-group-icon right">
                     <div class="input-icon"><i class="fa fa-envelope"></i></div>
-                    <input class="form-control" type="text" name="username" placeholder="Username" autocomplete="off">
+                    <input class="form-control" type="text" name="username" th:placeholder="#{label.username}" autocomplete="off">
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group-icon right">
                     <div class="input-icon"><i class="fa fa-lock font-16"></i></div>
-                    <input class="form-control" type="password" name="password" placeholder="Password">
+                    <input class="form-control" type="password" name="password" th:placeholder="#{label.password}">
                 </div>
             </div>
             <div class="form-group d-flex justify-content-between">
                 <label class="ui-checkbox ui-checkbox-info">
-                    <input type="checkbox">
-                    <span class="input-span"></span>Remember me</label>
-                <a href="forgot_password">Forgot password?</a>
+                    <input type="checkbox" th:uText="#{label.rememberMe}">
+                    <span class="input-span"></span></label>
+                <a href="forgot_password" th:uText="#{label.forgetPass}"></a>
             </div>
             <div class="form-group">
-                <button class="btn btn-info btn-block" type="submit">Login</button>
+                <button class="btn btn-info btn-block" type="submit" th:uText="#{label.login}"></button>
             </div>
             <div class="social-auth-hr">
-                <span>Or login with</span>
+                <span th:uText="#{label.loginWith}"></span>
             </div>
             <div class="text-center social-auth m-b-20">
                 <a class="btn btn-social-icon btn-twitter m-r-5"  th:href="@{/auth/twitter}"><i class="fa fa-twitter"></i></a>
@@ -55,8 +60,9 @@
                 <a class="btn btn-social-icon btn-linkedin m-r-5"  th:href="@{/auth/linkedin}"><i class="fa fa-linkedin"></i></a>
                 <a class="btn btn-social-icon btn-vk" href="javascript:;"><i class="fa fa-vk"></i></a>
             </div>
-            <div class="text-center">Not a member?
-                <a class="color-blue" th:href="@{/register}">Create accaunt</a>
+            <div class="text-center" >
+                <a th:uText="#{label.notAMember}"></a>
+                <a class="color-blue" href="register" th:uText="#{label.createAcount}"></a>
             </div>
         </form>
     </div>

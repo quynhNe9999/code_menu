@@ -3,8 +3,11 @@ package com.quynhtd.source_code_final.controller;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.social.connect.Connection;
@@ -19,6 +22,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.request.WebRequest;
@@ -47,6 +51,9 @@ public class MainController {
 
    @Autowired
    private AppUserValidator appUserValidator;
+   
+   @Autowired
+   private MessageSource messageSource;
 
    @InitBinder
    protected void initBinder(WebDataBinder dataBinder) {
@@ -65,7 +72,9 @@ public class MainController {
    }
 
    @RequestMapping(value = { "/", "/index" }, method = RequestMethod.GET)
-   public String welcomePage(Model model) {
+   public String welcomePage(Model model, Principal principal) {
+       UserDetails loginedUser = (UserDetails) ((Authentication) principal).getPrincipal();
+
        model.addAttribute("title", "Welcome");
        model.addAttribute("message", "This is welcome page!");
        return "index";
@@ -129,8 +138,9 @@ public class MainController {
    }
 
    @RequestMapping(value = { "/login" }, method = RequestMethod.GET)
-   public String login(Model model) {
+   public String login( Model model) {
        return "login";
+
    }
 
    // User login with social networking,
