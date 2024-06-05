@@ -1,7 +1,11 @@
 package com.quynhtd.source_code_final.validator;
 
+import java.util.Locale;
+
 import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
@@ -17,6 +21,12 @@ public class AppUserValidator implements Validator {
     // common-validator library.
     private EmailValidator emailValidator = EmailValidator.getInstance();
  
+    
+    private final MessageSource messageSource;
+
+    public AppUserValidator(MessageSource messageSource) {
+        this.messageSource = messageSource;
+    }
     @Autowired
     private AppUserDAO appUserDAO;
  
@@ -30,11 +40,19 @@ public class AppUserValidator implements Validator {
         
         AppUserForm form = (AppUserForm) target;
           
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "", "Email is required");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userName", "", "User name is required");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "firstName", "", "First name is required");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "lastName", "", "Last name is required");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "", "Password is required");
+        Locale locale = LocaleContextHolder.getLocale();
+
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "email.required",
+                messageSource.getMessage("email.required", null, locale));
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userName", "userName.required",
+                messageSource.getMessage("userName.required", null, locale));
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "firstName", "firstName.required",
+                messageSource.getMessage("firstName.required", null, locale));
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "lastName", "lastName.required",
+                messageSource.getMessage("lastName.required", null, locale));
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "password.required",
+                messageSource.getMessage("password.required", null, locale));
+    
  
         if (errors.hasErrors()) {
             return;
@@ -49,10 +67,10 @@ public class AppUserValidator implements Validator {
         AppUser userAccount = appUserDAO.findAppUserByUserName( form.getUserName());
         if (userAccount != null) {
             if (form.getUserId() == null) {
-                errors.rejectValue("userName", "", "User name is not available");
+            	errors.rejectValue("userName", "", messageSource.getMessage("user.name.not.available", null, locale));
                 return;
             } else if (!form.getUserId().equals(userAccount.getUserId() )) {
-                errors.rejectValue("userName", "", "User name is not available");
+            	errors.rejectValue("userName", "", messageSource.getMessage("user.name.not.available", null, locale));
                 return;
             }
         }
@@ -60,10 +78,10 @@ public class AppUserValidator implements Validator {
         userAccount = appUserDAO.findByEmail(form.getEmail());
         if (userAccount != null) {
             if (form.getUserId() == null) {
-                errors.rejectValue("email", "", "Email is not available");
+            	errors.rejectValue("email", "", messageSource.getMessage("email.not.available", null, locale));
                 return;
             } else if (!form.getUserId().equals(userAccount.getUserId() )) {
-                errors.rejectValue("email", "", "Email is not available");
+            	errors.rejectValue("email", "", messageSource.getMessage("email.not.available", null, locale));
                 return;
             }
         }
