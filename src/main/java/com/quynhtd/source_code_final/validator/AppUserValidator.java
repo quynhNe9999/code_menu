@@ -21,14 +21,14 @@ public class AppUserValidator implements Validator {
     // common-validator library.
     private EmailValidator emailValidator = EmailValidator.getInstance();
  
+    @Autowired
+    private AppUserDAO appUserDAO;
     
     private final MessageSource messageSource;
 
     public AppUserValidator(MessageSource messageSource) {
         this.messageSource = messageSource;
     }
-    @Autowired
-    private AppUserDAO appUserDAO;
  
     @Override
     public boolean supports(Class<?> clazz) {
@@ -39,20 +39,19 @@ public class AppUserValidator implements Validator {
     public void validate(Object target, Errors errors) {
         
         AppUserForm form = (AppUserForm) target;
-          
-        Locale locale = LocaleContextHolder.getLocale();
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "email.required",
-                messageSource.getMessage("email.required", null, locale));
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userName", "userName.required",
-                messageSource.getMessage("userName.required", null, locale));
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "firstName", "firstName.required",
-                messageSource.getMessage("firstName.required", null, locale));
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "lastName", "lastName.required",
-                messageSource.getMessage("lastName.required", null, locale));
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "password.required",
-                messageSource.getMessage("password.required", null, locale));
-    
+            Locale locale = LocaleContextHolder.getLocale();
+
+            ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "email.required",
+                    messageSource.getMessage("email.required", null, locale));
+            ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userName", "userName.required",
+                    messageSource.getMessage("userName.required", null, locale));
+            ValidationUtils.rejectIfEmptyOrWhitespace(errors, "firstName", "firstName.required",
+                    messageSource.getMessage("firstName.required", null, locale));
+            ValidationUtils.rejectIfEmptyOrWhitespace(errors, "lastName", "lastName.required",
+                    messageSource.getMessage("lastName.required", null, locale));
+            ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "password.required",
+                    messageSource.getMessage("password.required", null, locale));
  
         if (errors.hasErrors()) {
             return;
@@ -60,7 +59,7 @@ public class AppUserValidator implements Validator {
  
         if (!emailValidator.isValid(form.getEmail())) {
               
-            errors.rejectValue("email", "", "Email is not valid");
+        	errors.rejectValue("email", "", messageSource.getMessage("email.not.available", null, locale));
             return;
         }
  
