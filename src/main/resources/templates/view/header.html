@@ -18,11 +18,11 @@
         <header class="header">
             <div class="page-brand">
                 <a class="link" href="index">
-                    <span class="brand">ADMIN
+                    <span class="brand">
                     <!-- <span th:utext="${#request.userPrincipal.name}"></span> -->
-                        <span class="brand-tip" >Restaurant Manager</span>
+                        <span class="brand-tip"  th:utext="#{label.logo.res}"></span>
                     </span>
-                    <span class="brand-mini">ARM</span>
+                    <span class="brand-mini" th:utext="#{label.logo.mini}"></span>
                 </a>
             </div>
             <div class="flexbox flex-1">
@@ -35,15 +35,18 @@
                         <form class="navbar-search" action="javascript:;">
                             <div class="rel">
                                 <span class="search-icon"><i class="ti-search"></i></span>
-                                <input class="form-control" placeholder="Search here...">
+                                <input class="form-control" th:placeholder="#{button.search}" >
                             </div>
                         </form>
                     </li>
                 </ul>
                 <!-- END TOP-LEFT TOOLBAR-->
+                
+
+
                 <!-- START TOP-RIGHT TOOLBAR-->
                 <ul class="nav navbar-toolbar">
-                    <li class="dropdown dropdown-inbox">
+                    <!-- <li class="dropdown dropdown-inbox">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope-o"></i>
                             <span class="badge badge-primary envelope-badge">9</span>
                         </a>
@@ -103,8 +106,8 @@
                                 </div>
                             </li>
                         </ul>
-                    </li>
-                    <li class="dropdown dropdown-notification">
+                    </li> -->
+                    <!-- <li class="dropdown dropdown-notification">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell-o rel"><span class="notify-signal"></span></i></a>
                         <ul class="dropdown-menu dropdown-menu-right dropdown-menu-media">
                             <li class="dropdown-menu-header">
@@ -154,25 +157,27 @@
                                 </div>
                             </li>
                         </ul>
-                    </li>
-                    <li class="fa-light fa-globe">
-                             <a th:href="@{/login?lang=en}">English</a>
-         &nbsp;|&nbsp;
-         <a th:href="@{/login?lang=vi}">Vietnamese</a>
-                    
-                    </li>
-                    <li class="dropdown dropdown-user">
+                    </li> -->
+				<li class="dropdown dropdown-langusge">
+					<div style="text-align: right; padding: 5px; margin: 5px 0px;">
+						<a th:href="@{/index?lang=en}">EN</a>
+						<samp>|</samp>
+						<a th:href="@{/index?lang=vi}">VN</a>
+					</div>
+				</li>
+				<li class="dropdown dropdown-user">
                         <a class="nav-link dropdown-toggle link" data-toggle="dropdown">
                             <img src="./assets/img/admin-avatar.png" />
                             <span th:utext="${#request.userPrincipal.name}"></span><i class="fa fa-angle-down m-l-5"></i></a>
                         <ul class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="profile"><i class="fa fa-user" th:uText="#{label.profile}"></i></a>
                             <a class="dropdown-item" href="profile"><i class="fa fa-cog" th:uText="#{label.setting}"></i></a>
-                            <a class="dropdown-item" href="javascript:;"><i class="fa fa-support" th:uText="#{label.support}"></i></a>
+                            <a class="dropdown-item" href="profile"><i class="fa fa-support" th:uText="#{label.support}"></i></a>
                             <li class="dropdown-divider"></li>
-                            <a class="dropdown-item" href="login"><i class="fa fa-power-off"  th:uText="#{button.logout}"></i></a>
+                            <a class="dropdown-item" th:href="@{/logout}"><i class="fa fa-power-off"  th:uText="#{button.logout}"></i></a>
                         </ul>
                     </li>
+
                 </ul>
                 <!-- END TOP-RIGHT TOOLBAR-->
             </div>
