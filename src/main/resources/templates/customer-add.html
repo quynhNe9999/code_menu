@@ -38,8 +38,58 @@
                     <li class="breadcrumb-item" th:uText="#{label.module.customer}"></li>
                 </ol>
             </div>
-            
-            
+            <!-- dạng form thêm một bản ghi -->
+            <form th:action="@{/students}" th:object = "${student}" method="POST">
+						<div class ="form-group">
+							<label> Student First Name </label>
+							<input
+							type = "text"
+							name = "firstName"
+							th:field = "*{firstName}"
+							class = "form-control"
+							placeholder="Enter Student First Name" 
+							/>
+						</div>
+						
+						<div class ="form-group">
+							<label> Student Last Name </label>
+							<input
+							type = "text"
+							name = "lastName"
+							th:field = "*{lastName}"
+							class = "form-control"
+							placeholder="Enter Student Last Name" 
+							/>
+						</div>
+						
+						<div class ="form-group">
+							<label> Student Email </label>
+							<input
+							type = "text"
+							name = "email"
+							th:field = "*{email}"
+							class = "form-control"
+							placeholder="Enter Student Email" 
+							/>
+						</div>
+						
+				<div class ="form-group">
+							<label> Student Address </label>
+							<input
+							type = "text"
+							name = "address"
+							th:field = "*{address}"
+							class = "form-control"
+							placeholder="Enter Student Address" 
+							/>
+						</div>
+						
+						<div class = "box-footer">
+							<button type="submit" class = "btn btn-primary">
+								Submit
+							</button>
+						</div>
+					</form>
             
              </div>
                 
