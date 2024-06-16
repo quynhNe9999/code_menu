@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.quynhtd.source_code_final.entity.ImportDetails;
-import com.quynhtd.source_code_final.respository.ImportDetailsRepository;
+import com.quynhtd.source_code_final.repository.ImportDetailsRepository;
 
 @Service
 public class ImportDetailsService {

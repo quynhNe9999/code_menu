@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.quynhtd.source_code_final.entity.Brand;
-import com.quynhtd.source_code_final.respository.BrandRepository;
+import com.quynhtd.source_code_final.repository.BrandRepository;
 
 @Service
 public class BrandService {

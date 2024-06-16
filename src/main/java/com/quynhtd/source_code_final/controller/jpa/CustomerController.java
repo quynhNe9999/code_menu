@@ -22,7 +22,7 @@ import com.quynhtd.source_code_final.entity.Customer;
 import com.quynhtd.source_code_final.service.CustomerService;
 
 @Controller
-@Transactional
+@Transactional 
 public class CustomerController {
 
 

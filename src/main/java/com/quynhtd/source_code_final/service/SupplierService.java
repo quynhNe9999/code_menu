@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.quynhtd.source_code_final.entity.Supplier;
-import com.quynhtd.source_code_final.respository.SupplierRepository;
+import com.quynhtd.source_code_final.repository.SupplierRepository;
 
 @Service
 public class SupplierService {

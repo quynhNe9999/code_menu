@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.quynhtd.source_code_final.entity.Order;
-import com.quynhtd.source_code_final.respository.OrderRepository;
+import com.quynhtd.source_code_final.repository.OrderRepository;
 
 @Service
 public class OrderService {

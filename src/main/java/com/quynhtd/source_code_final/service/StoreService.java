@@ -1,32 +1,44 @@
 package com.quynhtd.source_code_final.service;
 
-
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.quynhtd.source_code_final.entity.Store;
-import com.quynhtd.source_code_final.respository.StoreRepository;
+import com.quynhtd.source_code_final.repository.StoreRepository;
 
 @Service
 public class StoreService {
-    @Autowired
-    private StoreRepository storeRepository;
+	  @Autowired
+	    private StoreRepository storeRepository;
 
-    public List<Store> getAllstores() {
-        return storeRepository.findAll();
-    }
+	    public List<Store> getAllStores() {
+	        return storeRepository.findAll();
+	    }
 
-    public Store getstoreById(Long id) {
-        return storeRepository.findById(id).orElse(null);
-    }
+	    public Optional<Store> getStoreById(Long id) {
+	        return storeRepository.findById(id);
+	    }
 
-    public Store savestore(Store store) {
-        return storeRepository.save(store);
-    }
+	    public Store createStore(Store store) {
+	        return storeRepository.save(store);
+	    }
 
-    public void deletestore(Long id) {
-        storeRepository.deleteById(id);
-    }
-}
+	    public Store updateStore(Long id, Store store) {
+	        if (storeRepository.existsById(id)) {
+	            store.setId(id);
+	            return storeRepository.save(store);
+	        }
+	        return null;
+	    }
+
+	    public boolean deleteStore(Long id) {
+	        if (storeRepository.existsById(id)) {
+	            storeRepository.deleteById(id);
+	            return true;
+	        }
+	        return false;
+	    }
+	}

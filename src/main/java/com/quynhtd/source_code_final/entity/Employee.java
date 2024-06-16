@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Employee {
@@ -17,6 +19,8 @@ public class Employee {
     private String name;
     private String position;
     private double salary;
+    
+    @Temporal(TemporalType.DATE)
     private Date hireDate;
 
     @ManyToOne

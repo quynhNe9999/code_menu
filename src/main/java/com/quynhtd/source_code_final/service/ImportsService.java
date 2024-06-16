@@ -10,7 +10,7 @@ import com.quynhtd.source_code_final.entity.Customer;
 import com.quynhtd.source_code_final.repository.CustomerRepository;
 
 @Service
-public class CustomerService {
+public class ImportsService {
 	  @Autowired
 	    private CustomerRepository customerRepository;
 

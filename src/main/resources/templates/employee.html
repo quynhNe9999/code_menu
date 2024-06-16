@@ -32,20 +32,20 @@
         <div class="content-wrapper">
             <!-- START PAGE CONTENT-->
             <div class="page-heading">
-                <h1 class="page-title" th:uText="#{label.module.customer}"></h1>
+                <h1 class="page-title" th:uText="#{label.module.imployees}"></h1>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
                         <a href="index"><i class="la la-home font-20"></i></a>
                     </li>
-                    <li class="breadcrumb-item" th:uText="#{label.module.customer}"></li>
+                    <li class="breadcrumb-item" th:uText="#{label.module.imployees}"></li>
                 </ol>
             </div>
             <div class="page-content fade-in-up">
                 <div class="ibox">
                     <div class="ibox-head">
-                        <div class="ibox-title" th:uText="#{label.module.customer}"></div>
+                        <div class="ibox-title" th:uText="#{label.module.imployees}"></div>
                         <div>
-                        <a th:href="@{customer-add}" class="btn btn-success" th:uText="#{view.button.add}" ></a>
+                        <a th:href="@{employee-add}" class="btn btn-success" th:uText="#{view.button.add}" ></a>
                         </div>
                     </div>
                     <div class="ibox-body">
@@ -53,12 +53,11 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th th:uText="#{label.view.cus.name}"></th>
-                                    <th th:uText="#{label.view.cus.email}"></th>
-                                    <th th:uText="#{label.view.cus.phoneNumber}"></th>
-                                    <th th:uText="#{label.view.cus.address}"></th>
-                                    <th th:uText="#{label.view.cus.active}"></th>
-                            
+                                    <th>Name</th>
+                                    <th>Position</th>
+                                    <th>Salary</th>
+                                    <th>HideDate</th>
+                                    <th>Active</th>
                                 </tr>
                             </thead>
 <!--                             <tfoot>
@@ -72,16 +71,24 @@
                                 </tr>
                             </tfoot> -->
                             <tbody>
-					          <tr th:each="customer : ${customers}">
-					                <td th:text="${customer.id}"></td>
-					                <td th:text="${customer.name}"></td>
-					                <td th:text="${customer.email}"></td>
-					                <td th:text="${customer.phoneNumber}"></td>
-					                <td th:text="${customer.address}"></td>
+<!--                                 <tr>
+                                    <td>Yuri Berry</td>
+                                    <td>Chief Marketing Officer (CMO)</td>
+                                    <td>New York</td>
+                                    <td>40</td>
+                                    <td>2009/06/25</td>
+                                    <td>$675,000</td>
+                                </tr> -->
+                                <tr th:each="employee : ${employees}">
+					                <td th:text="${employee.id}"></td>
+					                <td th:text="${employee.name}"></td>
+					                <td th:text="${employee.position}"></td>
+					                <td th:text="${employee.salary}"></td>
+					                <td th:text="${employee.hideDate}"></td>
 					                <td>
-					                	<a th:href="@{customer-edit/{id}(id=${customer.id})}" class="btn btn-primary" 
+					                	<a th:href="@{employee-edit/{id}(id=${employee.id})}" class="btn btn-primary" 
 					                	th:uText="#{view.button.edit}"></a> 
-					                	<a th:href="@{customer/{id}(id=${customer.id})}" class="btn btn-danger" 
+					                	<a th:href="@{employee/{id}(id=${employee.id})}" class="btn btn-danger" 
 					                	th:uText="#{view.button.delete}"></a>
 					                </td>
 					            </tr>
