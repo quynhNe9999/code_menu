@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width initial-scale=1.0">
         <link rel="shortcut icon" type="image/png" href="../assets/img/logos/favicon.png">
-    <title th:uText="#{label.module.customer}"></title>
+    <title th:uText="#{label.module.product}"></title>
     <!-- GLOBAL MAINLY STYLES-->
     <link href="./assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="./assets/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
@@ -32,20 +32,20 @@
         <div class="content-wrapper">
             <!-- START PAGE CONTENT-->
             <div class="page-heading">
-                <h1 class="page-title" th:uText="#{label.module.customer}"></h1>
+                <h1 class="page-title" th:uText="#{label.module.product}"></h1>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
                         <a href="index"><i class="la la-home font-20"></i></a>
                     </li>
-                    <li class="breadcrumb-item" th:uText="#{label.module.customer}"></li>
+                    <li class="breadcrumb-item" th:uText="#{label.module.product}"></li>
                 </ol>
             </div>
             <div class="page-content fade-in-up">
                 <div class="ibox">
                     <div class="ibox-head">
-                        <div class="ibox-title" th:uText="#{label.module.customer}"></div>
+                        <div class="ibox-title" th:uText="#{label.module.product}"></div>
                         <div>
-                        <a th:href="@{customer-add}" class="btn btn-create" th:uText="#{view.button.add}" ></a>
+                        <a th:href="@{product-add}" class="btn btn-create" th:uText="#{view.button.add}" ></a>
                         </div>
                     </div>
                     <div class="ibox-body">
@@ -53,11 +53,10 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th th:uText="#{label.view.cus.name}">Name</th>
-                                    <th th:uText="#{label.view.cus.email}">Email</th>
-                                    <th th:uText="#{label.view.cus.phoneNumber}">Số điện thoại</th>
-                                    <th th:uText="#{label.view.cus.addres}">Address</th>
-                                    <th th:uText="#{label.view.cus.active}">Hành động</th>
+                                    <th th:uText="#{label.view.product.name}"></th>
+                                    <th th:uText="#{label.view.product.des}"></th>
+                                    <th th:uText="#{label.view.product.price}"></th>
+                                    <th th:uText="#{label.view.cus.active}"></th>
                             
                                 </tr>
                             </thead>
@@ -72,16 +71,15 @@
                                 </tr>
                             </tfoot> -->
                             <tbody>
-					          <tr th:each="customer : ${customers}">
-					                <td th:text="${customer.id}"></td>
-					                <td th:text="${customer.name}"></td>
-					                <td th:text="${customer.email}"></td>
-					                <td th:text="${customer.phoneNumber}"></td>
-					                <td th:text="${customer.address}"></td>
+					          <tr th:each="product : ${products}">
+					                <td th:text="${product.id}"></td>
+					                <td th:text="${product.name}"></td>
+					                <td th:text="${product.description}"></td>
+					                <td th:text="${product.price}"></td>
 					                <td>
-					                	<a th:href="@{customer-edit/{id}(id=${customer.id})}" class="btn btn-primary" 
+					                	<a th:href="@{product-edit/{id}(id=${product.id})}" class="btn btn-primary" 
 					                	th:uText="#{view.button.edit}"></a> 
-					                	<a th:href="@{customer/{id}(id=${customer.id})}" class="btn btn-danger" 
+					                	<a th:href="@{product/{id}(id=${product.id})}" class="btn btn-danger" 
 					                	th:uText="#{view.button.delete}"></a>
 					                </td>
 					            </tr>
