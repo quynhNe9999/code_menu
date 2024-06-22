@@ -16,6 +16,7 @@ public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String employee_id;
     private String name;
     private String position;
     private double salary;
@@ -74,6 +75,15 @@ public class Employee {
 	public void setStore(Store store) {
 		this.store = store;
 	}
+
+	public String getEmployee_id() {
+		return employee_id;
+	}
+
+	public void setEmployee_id(String employee_id) {
+		this.employee_id = employee_id;
+	}
+	
 
     // Getters và setters
 }

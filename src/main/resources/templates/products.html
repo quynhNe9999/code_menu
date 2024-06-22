@@ -32,32 +32,33 @@
         <div class="content-wrapper">
             <!-- START PAGE CONTENT-->
             <div class="page-heading">
-                <h1 class="page-title" th:uText="#{label.module.store}"></h1>
+                <h1 class="page-title" th:uText="#{label.module.product}"></h1>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
                         <a href="index"><i class="la la-home font-20"></i></a>
                     </li>
-                    <li class="breadcrumb-item" th:uText="#{label.module.store}"></li>
+                    <li class="breadcrumb-item" th:uText="#{label.module.product}"></li>
                 </ol>
             </div>
             <div class="page-content fade-in-up">
                 <div class="ibox">
                     <div class="ibox-head">
-                        <div class="ibox-title" th:uText="#{label.module.store}"></div>
+                        <div class="ibox-title" th:uText="#{label.module.product}"></div>
                         <div>
-                        <a th:href="@{store-add}" class="btn btn-info" th:uText="#{view.button.add}" ></a>
+                        <a th:href="@{product-add}" class="btn btn-info" th:uText="#{view.button.add}" ></a>
                         </div>
                     </div>
                     <div class="ibox-body">
                         <table class="table table-striped table-bordered table-hover" id="example-table" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th th:uText="#{label.view.store.name}"></th>
-                                    <th th:uText="#{label.view.store.address}"></th>
-                                    <th th:uText="#{label.view.store.phoneNumber}"></th>
-                                    <th th:uText="#{label.view.store.email}"></th>
-                                    <th th:uText="#{label.view.store.active}"></th>
+                                    <th th:uText="#{label.view.product.product_id}"></th>
+                                    <th th:uText="#{label.view.product.name}"></th>
+                                    <th th:uText="#{label.view.product.description}"></th>
+                                    <th th:uText="#{label.view.product.price}"></th>
+                                    <th th:uText="#{label.view.product.image}"></th>
+                                    <th th:uText="#{label.view.product.createDate}"></th>
+                                    <th th:uText="#{label.view.product.active}"></th>
                             
                                 </tr>
                             </thead>
@@ -72,16 +73,19 @@
                                 </tr>
                             </tfoot> -->
                             <tbody>
-					          <tr th:each="store : ${stores}">
-					                <td th:text="${store.id}"></td>
-					                <td th:text="${store.name}"></td>
-					                <td th:text="${store.email}"></td>
-					                <td th:text="${store.phoneNumber}"></td>
-					                <td th:text="${store.address}"></td>
+					          <tr th:each="product : ${products}">
+					                <td th:text="${product.product_id}"></td>
+					                <td th:text="${product.name}"></td>
+					                <td th:text="${product.description}"></td>
+					                <td th:text="${product.price}"></td>
+					                <td><img th:src="@{${'/product/display/'+ product.id}}" 
+                						class="card img-fluid" style="width:300px" alt=""/></td>
+                					<td th:text="${#dates.format({product.createDate}, 'dd-MM-yyyy')}"/></td>
+					                <td th:text="${product.address}"></td>
 					                <td>
-					                	<a th:href="@{store-edit/{id}(id=${store.id})}" class="btn btn-warning" 
+					                	<a th:href="@{product-edit/{id}(id=${product.id})}" class="btn btn-warning" 
 					                	th:uText="#{view.button.edit}"></a> 
-					                	<a th:href="@{store/{id}(id=${store.id})}" class="btn btn-danger" 
+					                	<a th:href="@{product/{id}(id=${product.id})}" class="btn btn-danger" 
 					                	th:uText="#{view.button.delete}"></a>
 					                </td>
 					            </tr>

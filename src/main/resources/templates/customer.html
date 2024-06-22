@@ -45,7 +45,7 @@
                     <div class="ibox-head">
                         <div class="ibox-title" th:uText="#{label.module.customer}"></div>
                         <div>
-                        <a th:href="@{customer-add}" class="btn btn-success" th:uText="#{view.button.add}" ></a>
+                        <a th:href="@{customer-add}" class="btn btn-info" th:uText="#{view.button.add}" ></a>
                         </div>
                     </div>
                     <div class="ibox-body">
@@ -79,7 +79,7 @@
 					                <td th:text="${customer.phoneNumber}"></td>
 					                <td th:text="${customer.address}"></td>
 					                <td>
-					                	<a th:href="@{customer-edit/{id}(id=${customer.id})}" class="btn btn-primary" 
+					                	<a th:href="@{customer-edit/{id}(id=${customer.id})}" class="btn btn-warning" 
 					                	th:uText="#{view.button.edit}"></a> 
 					                	<a th:href="@{customer/{id}(id=${customer.id})}" class="btn btn-danger" 
 					                	th:uText="#{view.button.delete}"></a>

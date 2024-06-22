@@ -14,13 +14,18 @@ import com.quynhtd.source_code_final.repository.ProductRepository;
 public class ProductService {
     @Autowired
     private ProductRepository productRepository;
+    
+    public void saveProduct(Product product) {
+    	productRepository.save(product);	
+	}
+
+
+	public Optional<Product> getProductById(Long id) {
+		return productRepository.findById(id);
+	}
 
     public List<Product> getAllProducts() {
         return productRepository.findAll();
-    }
-
-    public Optional<Product> getProductById(Long id) {
-        return productRepository.findById(id);
     }
 
     public Product createProduct(Product product) {

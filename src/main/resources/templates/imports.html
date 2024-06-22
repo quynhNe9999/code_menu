@@ -45,7 +45,7 @@
                     <div class="ibox-head">
                         <div class="ibox-title" th:uText="#{label.module.imports}"></div>
                         <div>
-                        <a th:href="@{imports-add}" class="btn btn-success" th:uText="#{view.button.add}" ></a>
+                        <a th:href="@{imports-add}" class="btn btn-info" th:uText="#{view.button.add}" ></a>
                         </div>
                     </div>
                     <div class="ibox-body">
@@ -75,7 +75,7 @@
 					                <td th:text="${imports.importDate}"></td>
 					                <td th:text="${imports.totalCost}"></td>
 					                <td>
-					                	<a th:href="@{imports-edit/{id}(id=${imports.id})}" class="btn btn-primary" 
+					                	<a th:href="@{imports-edit/{id}(id=${imports.id})}" class="btn btn-warning" 
 					                	th:uText="#{view.button.edit}"></a> 
 					                	<a th:href="@{imports/{id}(id=${imports.id})}" class="btn btn-danger" 
 					                	th:uText="#{view.button.delete}"></a>

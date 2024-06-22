@@ -49,7 +49,7 @@ public class CustomerController {
                        .orElse(ResponseEntity.notFound().build());
     }
 
-    @RequestMapping(value = { "customer-add}" }, method = RequestMethod.POST)
+    @RequestMapping(value = { "customer-add" }, method = RequestMethod.POST)
     public ResponseEntity<Customer> createCustomer(@RequestBody Customer customer) {
         Customer createdCustomer = customerService.createCustomer(customer);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdCustomer);
