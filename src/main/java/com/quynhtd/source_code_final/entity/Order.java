@@ -10,6 +10,7 @@ public class Order {
 	   @Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	    private Long id;
+	    private String order_id;
 	    private Date orderDate;
 	    private double totalAmount;
 	    private String status;
@@ -68,6 +69,15 @@ public class Order {
 	public void setOrderDetails(List<OrderDetail> orderDetails) {
 		this.orderDetails = orderDetails;
 	}
+
+	public String getOrder_id() {
+		return order_id;
+	}
+
+	public void setOrder_id(String order_id) {
+		this.order_id = order_id;
+	}
+	
 
     // Getters và setters
 }

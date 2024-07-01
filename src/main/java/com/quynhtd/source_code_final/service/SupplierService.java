@@ -1,7 +1,7 @@
 package com.quynhtd.source_code_final.service;
 
-
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,22 +11,34 @@ import com.quynhtd.source_code_final.repository.SupplierRepository;
 
 @Service
 public class SupplierService {
-    @Autowired
-    private SupplierRepository supplierRepository;
+	  @Autowired
+	    private SupplierRepository supplierRepository;
 
-    public List<Supplier> getAllSuppliers() {
-        return supplierRepository.findAll();
-    }
+	    public List<Supplier> getAllSuppliers() {
+	        return supplierRepository.findAll();
+	    }
 
-    public Supplier getSupplierById(Long id) {
-        return supplierRepository.findById(id).orElse(null);
-    }
+	    public Optional<Supplier> getSupplierById(Long id) {
+	        return supplierRepository.findById(id);
+	    }
 
-    public Supplier saveSupplier(Supplier supplier) {
-        return supplierRepository.save(supplier);
-    }
+	    public Supplier createSupplier(Supplier supplier) {
+	        return supplierRepository.save(supplier);
+	    }
 
-    public void deleteSupplier(Long id) {
-        supplierRepository.deleteById(id);
-    }
-}
+	    public Supplier updateSupplier(Long id, Supplier supplier) {
+	        if (supplierRepository.existsById(id)) {
+	        	supplier.setId(id);
+	            return supplierRepository.save(supplier);
+	        }
+	        return null;
+	    }
+
+	    public boolean deleteSupplier(Long id) {
+	        if (supplierRepository.existsById(id)) {
+	        	supplierRepository.deleteById(id);
+	            return true;
+	        }
+	        return false;
+	    }
+	}
