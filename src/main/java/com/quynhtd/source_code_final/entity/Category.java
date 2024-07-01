@@ -10,7 +10,11 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String categoryId;
     private String name;
+    private String brandId;
+    private String brandName;
+    private String city;
 
     @OneToMany(mappedBy = "category")
     private List<Product> products;
@@ -37,6 +41,38 @@ public class Category {
 
 	public void setProducts(List<Product> products) {
 		this.products = products;
+	}
+
+	public String getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(String categoryId) {
+		this.categoryId = categoryId;
+	}
+
+	public String getBrandId() {
+		return brandId;
+	}
+
+	public void setBrandId(String brandId) {
+		this.brandId = brandId;
+	}
+
+	public String getBrandName() {
+		return brandName;
+	}
+
+	public void setBrandName(String brandName) {
+		this.brandName = brandName;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
 	}
 
     // Getters và setters
