@@ -59,9 +59,11 @@ public class CategoryController {
                 ResponseEntity.notFound().build();
     }
 
-    @RequestMapping(value = { "category/{id}" }, method = RequestMethod.DELETE)
-    public ResponseEntity<Void> deleteCategory(@PathVariable("id") Long id) {
+    @RequestMapping(value = { "category/{id}" }, method = RequestMethod.GET)
+    public String deleteCategory(@PathVariable("id") Long id) {
         boolean deleted = categoryService.deleteCategory(id);
-        return deleted ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
+        return "redirect:/category-list";
+
+//        return deleted ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
     }
 }

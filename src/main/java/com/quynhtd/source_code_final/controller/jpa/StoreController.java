@@ -59,9 +59,11 @@ public class StoreController {
                 ResponseEntity.notFound().build();
     }
 
-    @RequestMapping(value = { "store/{id}" }, method = RequestMethod.DELETE)
-    public ResponseEntity<Void> deleteStore(@PathVariable("id") Long id) {
+    @RequestMapping(value = { "store/{id}" }, method = RequestMethod.GET)
+    public String deleteStore(@PathVariable("id") Long id) {
         boolean deleted = storeService.deleteStore(id);
-        return deleted ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
+        return "redirect:/store-list";
+
+        //        return deleted ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
     }
 }

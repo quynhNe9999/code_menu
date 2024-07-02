@@ -25,6 +25,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -145,5 +147,11 @@ public class ProductsController {
 		map.addAttribute("products", product);
 		return "product";
 	}
+	
+    @RequestMapping(value = { "product/{id}" }, method = RequestMethod.GET)
+    public String deleteStore(@PathVariable("id") Long id) {
+        boolean deleted = productService.deleteProduct(id);
+        return "redirect:/product-list";
+    }
 }	
 

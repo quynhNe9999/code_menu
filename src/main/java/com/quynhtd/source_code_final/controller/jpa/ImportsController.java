@@ -59,9 +59,11 @@ public class ImportsController {
                 ResponseEntity.notFound().build();
     }
 
-    @RequestMapping(value = { "imports/{id}" }, method = RequestMethod.DELETE)
-    public ResponseEntity<Void> deleteImports(@PathVariable("id") Long id) {
+    @RequestMapping(value = { "imports/{id}" }, method = RequestMethod.GET)
+    public String deleteImports(@PathVariable("id") Long id) {
         boolean deleted = importService.deleteImports(id);
-        return deleted ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
+        return "redirect:/imports-list";
+
+//        return deleted ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
     }
 }

@@ -59,9 +59,11 @@ public class OrderController {
                 ResponseEntity.notFound().build();
     }
 
-    @RequestMapping(value = { "order/{id}" }, method = RequestMethod.DELETE)
-    public ResponseEntity<Void> deleteOrder(@PathVariable("id") Long id) {
+    @RequestMapping(value = { "order/{id}" }, method = RequestMethod.GET)
+    public String deleteOrder(@PathVariable("id") Long id) {
         boolean deleted = orderService.deleteOrder(id);
-        return deleted ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
+        return "redirect:/order-list";
+
+//        return deleted ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
     }
 }

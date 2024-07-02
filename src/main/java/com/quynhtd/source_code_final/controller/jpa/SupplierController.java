@@ -59,9 +59,11 @@ public class SupplierController {
                 ResponseEntity.notFound().build();
     }
 
-    @RequestMapping(value = { "supplier/{id}" }, method = RequestMethod.DELETE)
-    public ResponseEntity<Void> deleteSupplier(@PathVariable("id") Long id) {
+    @RequestMapping(value = { "supplier/{id}" }, method = RequestMethod.GET)
+    public String deleteSupplier(@PathVariable("id") Long id) {
         boolean deleted = supplierService.deleteSupplier(id);
-        return deleted ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
+        return "redirect:/supplier-list";
+
+//        return deleted ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
     }
 }

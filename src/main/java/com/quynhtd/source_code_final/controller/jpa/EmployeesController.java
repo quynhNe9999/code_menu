@@ -65,9 +65,11 @@ public class EmployeesController {
                 ResponseEntity.notFound().build();
     }
 
-    @RequestMapping(value = { "employee/{id}" }, method = RequestMethod.DELETE)
-    public ResponseEntity<Void> deleteEmployee(@PathVariable("id") Long id) {
+    @RequestMapping(value = { "employee/{id}" }, method = RequestMethod.GET)
+    public String deleteEmployee(@PathVariable("id") Long id) {
         boolean deleted = employeeService.deleteEmployee(id);
-        return deleted ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
+        return "redirect:/employee-list";
+
+//        return deleted ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
     }
 }

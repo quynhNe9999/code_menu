@@ -63,9 +63,11 @@ public class CustomerController {
                 ResponseEntity.notFound().build();
     }
 
-    @RequestMapping(value = { "customer/{id}" }, method = RequestMethod.DELETE)
-    public ResponseEntity<Void> deleteCustomer(@PathVariable("id") Long id) {
+    @RequestMapping(value = { "customer/{id}" }, method = RequestMethod.GET)
+    public String deleteCustomer(@PathVariable("id") Long id) {
         boolean deleted = customerService.deleteCustomer(id);
-        return deleted ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
+        return "redirect:/customer-list";
+
+//        return deleted ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
     }
 }
