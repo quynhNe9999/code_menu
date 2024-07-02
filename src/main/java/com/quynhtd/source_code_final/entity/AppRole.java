@@ -1,6 +1,8 @@
 package com.quynhtd.source_code_final.entity;
 
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,37 +10,26 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import lombok.Data;
+
 @Entity
-@Table(name = "App_Role", //
+@Data
+@Table(name = "APP_ROLE", //
        uniqueConstraints = { //
-               @UniqueConstraint(name = "APP_ROLE_UK", columnNames = "Role_Name") })
-public class AppRole {
-     
+               @UniqueConstraint(name = "APP_ROLE_UK", columnNames = "ROLE_NAME") })
+public class AppRole implements Serializable{
+    private static final long serialVersionUID = 1L;
+
    public static final String ROLE_USER = "ROLE_USER";
    public static final String ROLE_ADMIN = "ROLE_ADMIN";
    
    @Id
    @GeneratedValue
-   @Column(name = "Role_Id" , length = 50, nullable = false)
+   @Column(name = "ROLE_ID" , length = 50, nullable = false)
    private Long roleId;
 
-   @Column(name = "Role_Name", length = 30, nullable = false)
+   @Column(name = "ROLE_NAME", length = 30, nullable = false)
    private String roleName;
 
-   public Long getRoleId() {
-       return roleId;
-   }
-
-   public void setRoleId(Long roleId) {
-       this.roleId = roleId;
-   }
-
-   public String getRoleName() {
-       return roleName;
-   }
-
-   public void setRoleName(String roleName) {
-       this.roleName = roleName;
-   }
    
 }

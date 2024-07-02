@@ -3,77 +3,42 @@ package com.quynhtd.source_code_final.entity;
 
 
 import javax.persistence.*;
+
+import lombok.Data;
+
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
-public class Category {
-    @Id
+@Data
+@Table(name="CATEGORY")
+public class Category implements Serializable{
+	private static final long serialVersionUID = 1L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID",length = 20)
     private Long id;
+    
+    @Column(name = "CATEGORY_ID",length = 50)
     private String categoryId;
+    
+    @Column(name = "NAME",length = 50)
     private String name;
+    
+    @Column(name = "BRAND_ID",length = 50)
     private String brandId;
+    
+    @Column(name = "BRAND_NAME",length = 50)
     private String brandName;
-    private String city;
+
+    @Column(name = "NATIONAL",length = 50)
+    private String national;
 
     @OneToMany(mappedBy = "category")
     private List<Product> products;
 
-	public Long getId() {
-		return id;
-	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
 
-	public String getName() {
-		return name;
-	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public List<Product> getProducts() {
-		return products;
-	}
-
-	public void setProducts(List<Product> products) {
-		this.products = products;
-	}
-
-	public String getCategoryId() {
-		return categoryId;
-	}
-
-	public void setCategoryId(String categoryId) {
-		this.categoryId = categoryId;
-	}
-
-	public String getBrandId() {
-		return brandId;
-	}
-
-	public void setBrandId(String brandId) {
-		this.brandId = brandId;
-	}
-
-	public String getBrandName() {
-		return brandName;
-	}
-
-	public void setBrandName(String brandName) {
-		this.brandName = brandName;
-	}
-
-	public String getCity() {
-		return city;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
-
-    // Getters và setters
 }

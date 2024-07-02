@@ -1,139 +1,56 @@
 package com.quynhtd.source_code_final.entity;
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.Data;
+
 @Entity
-@Table(name = "Userconnection")
+@Data
+@Table(name = "USER_CONNECTION")
 public class UserConnection implements Serializable {
 
     private static final long serialVersionUID = -6991752510891411572L;
 
     @Id
-    @Column(name = "Userid", length = 255, nullable = false)
+    @Column(name = "USER_ID", length = 255, nullable = false)
     private String userId;
 
     @Id
-    @Column(name = "Providerid", length = 255, nullable = false)
+    @Column(name = "PROVIDERID", length = 255, nullable = false)
     private String providerId;
 
     @Id
-    @Column(name = "Provideruserid", length = 255, nullable = false)
+    @Column(name = "PROVIDER_USER_ID", length = 255, nullable = false)
     private String providerUserId;
 
-    @Column(name = "Rank", nullable = false)
+    @Column(name = "RANK", nullable = false)
     private int rank;
 
-    @Column(name = "Displayname", length = 255, nullable = true)
+    @Column(name = "DISPLAY_NAME", length = 255, nullable = true)
     private String displayName;
 
-    @Column(name = "Profileurl", length = 512, nullable = true)
+    @Column(name = "PROFILE_URL", length = 512, nullable = true)
     private String profileUrl;
 
-    @Column(name = "Imageurl", length = 512, nullable = true)
+    @Column(name = "IMAGE_URL", length = 512, nullable = true)
     private String imageUrl;
 
-    @Column(name = "Accesstoken", length = 512, nullable = true)
+    @Column(name = "ACCESS_TOKEN", length = 512, nullable = true)
     private String accessToken;
 
-    @Column(name = "Secret", length = 512, nullable = true)
+    @Column(name = "SECRET", length = 512, nullable = true)
     private String secret;
 
-    @Column(name = "Refreshtoken", length = 512, nullable = true)
+    @Column(name = "REFRESH_TOKEN", length = 512, nullable = true)
     private String refreshToken;
 
-    @Column(name = "Expiretime", nullable = true)
+    @Column(name = "EXPIRE_TIME", nullable = true)
     private Long expireTime;
 
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public String getProviderId() {
-        return providerId;
-    }
-
-    public void setProviderId(String providerId) {
-        this.providerId = providerId;
-    }
-
-    public String getProviderUserId() {
-        return providerUserId;
-    }
-
-    public void setProviderUserId(String providerUserId) {
-        this.providerUserId = providerUserId;
-    }
-
-    public int getRank() {
-        return rank;
-    }
-
-    public void setRank(int rank) {
-        this.rank = rank;
-    }
-
-    public String getDisplayName() {
-        return displayName;
-    }
-
-    public void setDisplayName(String displayName) {
-        this.displayName = displayName;
-    }
-
-    public String getProfileUrl() {
-        return profileUrl;
-    }
-
-    public void setProfileUrl(String profileUrl) {
-        this.profileUrl = profileUrl;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
-    public String getAccessToken() {
-        return accessToken;
-    }
-
-    public void setAccessToken(String accessToken) {
-        this.accessToken = accessToken;
-    }
-
-    public String getSecret() {
-        return secret;
-    }
-
-    public void setSecret(String secret) {
-        this.secret = secret;
-    }
-
-    public String getRefreshToken() {
-        return refreshToken;
-    }
-
-    public void setRefreshToken(String refreshToken) {
-        this.refreshToken = refreshToken;
-    }
-
-    public Long getExpireTime() {
-        return expireTime;
-    }
-
-    public void setExpireTime(Long expireTime) {
-        this.expireTime = expireTime;
-    }
-
+    
 }

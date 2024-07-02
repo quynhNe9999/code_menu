@@ -1,8 +1,10 @@
 package com.quynhtd.source_code_final.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,13 +12,25 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import lombok.Data;
 
 @Entity
-public class Imports {
+@Data
+@Table(name = "IMPORTS")
+public class Imports implements Serializable{
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID",length = 20)
     private Long id;
+    
+    @Column(name = "IMPORT_DATE",length = 20)
     private Date importDate;
+    
+    @Column(name = "TOTAL_COST",length = 20)
     private double totalCost;
 
     @ManyToOne
@@ -26,46 +40,5 @@ public class Imports {
     @OneToMany(mappedBy = "imports")
     private List<ImportDetails> importDetails;
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Date getImportDate() {
-		return importDate;
-	}
-
-	public void setImportDate(Date importDate) {
-		this.importDate = importDate;
-	}
-
-	public double getTotalCost() {
-		return totalCost;
-	}
-
-	public void setTotalCost(double totalCost) {
-		this.totalCost = totalCost;
-	}
-
-	public Supplier getSupplier() {
-		return supplier;
-	}
-
-	public void setSupplier(Supplier supplier) {
-		this.supplier = supplier;
-	}
-
-	public List<ImportDetails> getImportDetails() {
-		return importDetails;
-	}
-
-	public void setImportDetails(List<ImportDetails> importDetails) {
-		this.importDetails = importDetails;
-	}
-
-    // Getters và setters
-    
+	
 }

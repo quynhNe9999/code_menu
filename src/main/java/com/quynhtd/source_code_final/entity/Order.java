@@ -1,18 +1,34 @@
 package com.quynhtd.source_code_final.entity;
 
 import javax.persistence.*;
+
+import lombok.Data;
+
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "customer_order")
-public class Order {
+@Data
+@Table(name = "ORDERS")
+public class Order implements Serializable{
+    private static final long serialVersionUID = 1L;
+
 	   @Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	    @Column(name = "ID",length = 20)
 	    private Long id;
-	    private String order_id;
+	   
+	    @Column(name = "ORDER_ID",length = 20)
+	    private String orderId;
+	    
+	    @Column(name = "ORDER_DATE",length = 20)
 	    private Date orderDate;
+	    
+	    @Column(name = "TOTAL_AMOUNT",length = 20)
 	    private double totalAmount;
+	    
+	    @Column(name = "STATUS",length = 20)
 	    private String status;
 
 	    @ManyToOne
@@ -22,62 +38,5 @@ public class Order {
 	    @OneToMany(mappedBy = "order")
 	    private List<OrderDetail> orderDetails;
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Date getOrderDate() {
-		return orderDate;
-	}
-
-	public void setOrderDate(Date orderDate) {
-		this.orderDate = orderDate;
-	}
-
-	public double getTotalAmount() {
-		return totalAmount;
-	}
-
-	public void setTotalAmount(double totalAmount) {
-		this.totalAmount = totalAmount;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
-	public Customer getCustomer() {
-		return customer;
-	}
-
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
-
-	public List<OrderDetail> getOrderDetails() {
-		return orderDetails;
-	}
-
-	public void setOrderDetails(List<OrderDetail> orderDetails) {
-		this.orderDetails = orderDetails;
-	}
-
-	public String getOrder_id() {
-		return order_id;
-	}
-
-	public void setOrder_id(String order_id) {
-		this.order_id = order_id;
-	}
 	
-
-    // Getters và setters
 }

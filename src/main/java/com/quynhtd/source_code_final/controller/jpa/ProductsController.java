@@ -53,8 +53,8 @@ public class ProductsController {
 //	}
 
 	@PostMapping("/product/saveproductDetails")
-	public @ResponseBody ResponseEntity<?> createProduct(@RequestParam("name") String name,
-			@RequestParam("price") double price, @RequestParam("description") String description, Model model, HttpServletRequest request
+	public @ResponseBody ResponseEntity<?> createProduct(@RequestParam("productName") String productName,
+			@RequestParam("productPrice") double productPrice, @RequestParam("productDescripsion") String productDescripsion, Model model, HttpServletRequest request
 			,final @RequestParam("product") MultipartFile file) {
 		try {
 			//String uploadDirectory = System.getProperty("user.dir") + uploadFolder;
@@ -67,12 +67,12 @@ public class ProductsController {
 				model.addAttribute("invalid", "Sorry! Filename contains invalid path sequence \" + fileName");
 				return new ResponseEntity<>("Sorry! Filename contains invalid path sequence " + fileName, HttpStatus.BAD_REQUEST);
 			}
-			String[] names = name.split(",");
-			String[] descriptions = description.split(",");
+			String[] names = productName.split(",");
+			String[] Descriptions = productDescripsion.split(",");
 			Date createDate = new Date();
 			log.info("Name: " + names[0]+" "+filePath);
-			log.info("description: " + descriptions[0]);
-			log.info("price: " + price);
+			log.info("productDescripsion: " + Descriptions[0]);
+			log.info("productPrice: " + productPrice);
 			try {
 				File dir = new File(uploadDirectory);
 				if (!dir.exists()) {
@@ -89,10 +89,10 @@ public class ProductsController {
 			}
 			byte[] imageData = file.getBytes();
 			Product product = new Product();
-			product.setName(names[0]);
+			product.setProductName(names[0]);
 			product.setImage(imageData);
-			product.setPrice(price);
-			product.setDescription(descriptions[0]);
+			product.setProductPrice(productPrice);
+			product.setProductDescripsion(Descriptions[0]);
 			product.setCreateDate(createDate);
 			productService.saveProduct(product);
 			log.info("HttpStatus===" + new ResponseEntity<>(HttpStatus.OK));
@@ -125,9 +125,9 @@ public class ProductsController {
 				log.info("products :: " + product);
 				if (product.isPresent()) {
 					model.addAttribute("id", product.get().getId());
-					model.addAttribute("description", product.get().getDescription());
-					model.addAttribute("name", product.get().getName());
-					model.addAttribute("price", product.get().getPrice());
+					model.addAttribute("productDescription", product.get().getProductDescripsion());
+					model.addAttribute("productName", product.get().getProductName());
+					model.addAttribute("productPrice", product.get().getProductPrice());
 					return "products";
 				}
 				return "redirect:/home";
@@ -143,7 +143,7 @@ public class ProductsController {
 	String show(Model map) {
 		List<Product> product = productService.getAllProducts();
 		map.addAttribute("products", product);
-		return "products";
+		return "product";
 	}
 }	
 

@@ -1,90 +1,53 @@
 package com.quynhtd.source_code_final.entity;
 
+import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.Data;
+
 @Entity
-public class Employee {
+@Data
+@Table(name="EMPLOYEE")
+public class Employee implements Serializable{
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID",length = 20)
     private Long id;
-    private String employee_id;
+    
+    @Column(name = "EMPLOYEE_ID",length = 20)
+    private String employeeId;
+    
+    @Column(name = "NAME",length = 20)
     private String name;
+    
+    @Column(name = "POSITION",length = 20)
     private String position;
+
+    @Column(name = "SALARY",length = 20)
     private double salary;
     
     @Temporal(TemporalType.DATE)
+    @Column(name = "HIRE_DATE")
     private Date hireDate;
 
     @ManyToOne
-    @JoinColumn(name = "store_id")
+    @JoinColumn(name = "s")
     private Store store;
     
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getPosition() {
-		return position;
-	}
-
-	public void setPosition(String position) {
-		this.position = position;
-	}
-
-	public double getSalary() {
-		return salary;
-	}
-
-	public void setSalary(double salary) {
-		this.salary = salary;
-	}
-
-	public Date getHireDate() {
-		return hireDate;
-	}
-
-	public void setHireDate(Date hireDate) {
-		this.hireDate = hireDate;
-	}
-
-	public Store getStore() {
-		return store;
-	}
-
-	public void setStore(Store store) {
-		this.store = store;
-	}
-
-	public String getEmployee_id() {
-		return employee_id;
-	}
-
-	public void setEmployee_id(String employee_id) {
-		this.employee_id = employee_id;
-	}
 	
-
-    // Getters và setters
 }
 

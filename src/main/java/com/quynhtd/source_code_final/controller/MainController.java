@@ -71,7 +71,7 @@ public class MainController {
        // ...
    }
 
-   @RequestMapping(value = { "/", "/index" }, method = RequestMethod.GET)
+   @RequestMapping(value = {"/index" }, method = RequestMethod.GET)
    public String welcomePage(Model model, Principal principal) {
        UserDetails loginedUser = (UserDetails) ((Authentication) principal).getPrincipal();
 

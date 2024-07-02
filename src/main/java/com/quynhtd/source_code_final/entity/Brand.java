@@ -1,41 +1,30 @@
 package com.quynhtd.source_code_final.entity;
 
 import javax.persistence.*;
+
+import lombok.Data;
+
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
-public class Brand {
+@Data
+@Table(name="BRAND")
+public class Brand implements Serializable{
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID",length = 20)
     private Long id;
+    
+    @Column(name = "BRAND_ID",length = 20, nullable = false)
+    private String brandId;
+    
+    @Column(name = "BRAND_NAME",length = 50, nullable = false)
     private String name;
 
     @OneToMany(mappedBy = "brand")
     private List<Product> products;
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public List<Product> getProducts() {
-		return products;
-	}
-
-	public void setProducts(List<Product> products) {
-		this.products = products;
-	}
-
-    // Getters và setters
 }

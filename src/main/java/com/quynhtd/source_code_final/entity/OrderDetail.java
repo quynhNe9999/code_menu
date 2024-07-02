@@ -1,13 +1,27 @@
 package com.quynhtd.source_code_final.entity;
 
+import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.*;
 
+import lombok.Data;
+
 @Entity
-public class OrderDetail {
+@Data
+@Table(name = "ORDER_DETAIL")
+public class OrderDetail implements Serializable{
+    private static final long serialVersionUID = 1L;
+
 	   @Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	    @Column(name = "ID",length = 20)
 	    private Long id;
+	   
+	    @Column(name = "QUANTITY",length = 20)
 	    private int quantity;
+	    
+	    @Column(name = "UNITPRICE",length = 20)
 	    private double unitPrice;
 
 	    @ManyToOne
@@ -18,46 +32,6 @@ public class OrderDetail {
 	    @JoinColumn(name = "product_id")
 	    private Product product;
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public int getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
-
-	public double getUnitPrice() {
-		return unitPrice;
-	}
-
-	public void setUnitPrice(double unitPrice) {
-		this.unitPrice = unitPrice;
-	}
-
-	public Order getOrder() {
-		return order;
-	}
-
-	public void setOrder(Order order) {
-		this.order = order;
-	}
-
-	public Product getProduct() {
-		return product;
-	}
-
-	public void setProduct(Product product) {
-		this.product = product;
-	}
-
-    // Getters và setters
+	
 }
 

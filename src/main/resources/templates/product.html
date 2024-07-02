@@ -56,6 +56,8 @@
                                     <th th:uText="#{label.view.product.name}"></th>
                                     <th th:uText="#{label.view.product.des}"></th>
                                     <th th:uText="#{label.view.product.price}"></th>
+                                    <th th:uText="#{label.view.product.image}"></th>
+                                    <th th:uText="#{label.view.product.createDate}"></th>
                                     <th th:uText="#{label.view.cus.active}"></th>
                             
                                 </tr>
@@ -72,10 +74,13 @@
                             </tfoot> -->
                             <tbody>
 					          <tr th:each="product : ${products}">
-					                <td th:text="${product.id}"></td>
-					                <td th:text="${product.name}"></td>
-					                <td th:text="${product.description}"></td>
-					                <td th:text="${product.price}"></td>
+					                <td th:text="${product.productId}"></td>
+					                <td th:text="${product.productName}"></td>
+					                <td th:text="${product.productDescripsion}"></td>
+					                <td th:text="${product.productPrice}"></td>
+					                <td th:text="${product.image}"></td>
+					                <td th:text="${product.createDate}"></td>
+					                
 					                <td>
 					                	<a th:href="@{product-edit/{id}(id=${product.id})}" class="btn btn-primary" 
 					                	th:uText="#{view.button.edit}"></a> 
