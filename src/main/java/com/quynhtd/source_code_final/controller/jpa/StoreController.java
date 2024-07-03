@@ -1,14 +1,13 @@
 package com.quynhtd.source_code_final.controller.jpa;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.quynhtd.source_code_final.entity.Store;
 import com.quynhtd.source_code_final.service.StoreService;
+
 
 @Controller
 @Transactional 
@@ -39,16 +39,18 @@ public class StoreController {
 
 
     @RequestMapping(value = { "store-add" }, method = RequestMethod.GET)
-    public ResponseEntity<Store> getStoreById(@PathVariable("id") Long id) {
-        Optional<Store> Store = storeService.getStoreById(id);
-        return Store.map(ResponseEntity::ok)
-                       .orElse(ResponseEntity.notFound().build());
+    public String getStoreAdd( Model model) {
+//        Optional<Store> Store = storeService.getStoreById(id);
+        Store store = new Store();
+		model.addAttribute("store", store);
+		return "store-add";
     }
 
-    @RequestMapping(value = { "store-add}" }, method = RequestMethod.POST)
-    public ResponseEntity<Store> createStore(@RequestBody Store Store) {
-        Store createdStore = storeService.createStore(Store);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdStore);
+    @RequestMapping(value = { "store-list" }, method = RequestMethod.POST)
+    public String createStore(@ModelAttribute("store")  Store Store) {
+        storeService.createStore(Store);
+        return"redirect:/store-list";
+//        return ResponseEntity.status(HttpStatus.CREATED).body(createdStore);
     }
 
     @RequestMapping(value = { "store-edit/{id}" }, method = RequestMethod.PUT)

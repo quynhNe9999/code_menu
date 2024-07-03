@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width initial-scale=1.0">
+    <link rel="shortcut icon" type="image/png" href="../assets/img/logos/favicon.png">
+    <title th:uText="#{label.module.customer}"></title>
+    <!-- GLOBAL MAINLY STYLES-->
+    <link href="./assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="./assets/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="./assets/vendors/themify-icons/css/themify-icons.css" rel="stylesheet" />
+    <!-- PLUGINS STYLES-->
+    <link href="./assets/vendors/DataTables/datatables.min.css" rel="stylesheet" />
+    <!-- THEME STYLES-->
+    <link href="assets/css/main.min.css" rel="stylesheet" />
+    <!-- PAGE LEVEL STYLES-->
+</head>
+
+<body class="fixed-navbar">
+    <div class="page-wrapper">
+        <!-- START HEADER-->
+
+        <!-- END HEADER-->
+        <!-- START SIDEBAR-->
+        <!-- <div th:replace="::header"></div> -->
+        <th:block th:include="/view/header"></th:block>
+        <th:block th:include="/view/page_sidebar"></th:block>
+        <!-- END SIDEBAR-->
+        <div class="content-wrapper">
+            <!-- START PAGE CONTENT-->
+            <div class="page-heading">
+                <h1 class="page-title" th:uText="#{label.module.supplier}"></h1>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="index"><i class="la la-home font-20"></i></a>
+                    </li>
+                </ol>
+            </div>
+            <div class="page-content fade-in-up">
+                <div class="ibox">
+                    <div class="ibox-head">
+                        <div class="ibox-title" th:uText="#{label.module.supplieradd}"></div>
+                    </div>
+                    <div class="ibox-body">
+                        <!-- Form for adding new supplier -->
+                        <form th:action="@{/supplier/save}" method="post">
+                            <div class="form-group row">
+                                <label class="col-lg-2 col-form-label" th:uText="#{label.view.supplier.name}"></label>
+                                <div class="col-lg-10">
+                                    <input type="text" class="form-control" name="name" th:placeholder="#{label.view.supplier.name}" required />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-2 col-form-label" th:uText="#{label.view.supplier.contactName}"></label>
+                                <div class="col-lg-10">
+                                    <input type="text" class="form-control" name="contactName" th:placeholder="#{label.view.supplier.contactName}" required />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-2 col-form-label" th:uText="#{label.view.supplier.contactPhone}"></label>
+                                <div class="col-lg-10">
+                                    <input type="text" class="form-control" name="contactPhone" th:placeholder="#{label.view.supplier.contactPhone}" required />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-2 col-form-label" th:uText="#{label.view.supplier.contactEmail}"></label>
+                                <div class="col-lg-10">
+                                    <input type="email" class="form-control" name="contactEmail" th:placeholder="#{label.view.supplier.contactEmail}" required />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-2 col-form-label" th:uText="#{label.view.supplier.address}"></label>
+                                <div class="col-lg-10">
+                                    <input type="text" class="form-control" name="address" th:placeholder="#{label.view.supplier.address}" required />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-lg-10 offset-lg-2">
+                                    <button type="submit" class="btn btn-primary" th:uText="#{view.button.save}"></button>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            <!-- END PAGE CONTENT-->
+            <th:block th:include="/view/footer"></th:block>
+
+            <!-- END THEME CONFIG PANEL-->
+            <!-- BEGIN PAGA BACKDROPS-->
+            <div class="sidenav-backdrop backdrop"></div>
+            <div class="preloader-backdrop">
+                <div class="page-preloader">Loading</div>
+            </div>
+            <!-- END PAGA BACKDROPS-->
+            <!-- CORE PLUGINS-->
+            <script src="./assets/vendors/jquery/dist/jquery.min.js" type="text/javascript"></script>
+            <script src="./assets/vendors/popper.js/dist/umd/popper.min.js" type="text/javascript"></script>
+            <script src="./assets/vendors/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+            <script src="./assets/vendors/metisMenu/dist/metisMenu.min.js" type="text/javascript"></script>
+            <script src="./assets/vendors/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+            <!-- PAGE LEVEL PLUGINS-->
+            <script src="./assets/vendors/DataTables/datatables.min.js" type="text/javascript"></script>
+            <!-- CORE SCRIPTS-->
+            <script src="assets/js/app.min.js" type="text/javascript"></script>
+            <!-- PAGE LEVEL SCRIPTS-->
+            <script type="text/javascript">
+                $(function() {
+                    $('#example-table').DataTable({
+                        pageLength: 10,
+                        "language": {
+                            "error.sZeroRecords": /*[[#{sZeroRecords}]]*/"No matching records found"
+                        },
+                        //"ajax": './assets/demo/data/table_data.json',
+                    });
+                })
+            </script>
+        </div>
+    </div>
+</body>
+
+</html>

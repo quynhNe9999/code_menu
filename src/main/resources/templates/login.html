@@ -15,6 +15,45 @@
     <link href="assets/css/main.css" rel="stylesheet" />
     <!-- PAGE LEVEL STYLES-->
     <link href="./assets/css/pages/auth-light.css" rel="stylesheet" />
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(function () {
+            var url = window.location.href;
+            $("#lang-en").attr('href', replaceUrlParam(url, 'lang', 'en'));
+            $("#lang-vi").attr('href', replaceUrlParam(url, 'lang', 'vi'));
+
+/*             var interval = 1000 * 15 * 1; // reload getAnnouncementMessage each 15 seconds
+
+            var intervalId = setInterval(getAnnouncementMessage, interval);
+
+            $(window).focus(function() {
+                if (!intervalId){
+                    intervalId = setInterval(getAnnouncementMessage, interval);
+                }
+            }); */
+
+            $(window).blur(function() {
+                clearInterval(intervalId);
+                intervalId = 0;
+            });
+        });
+
+        function replaceUrlParam(url, paramName, paramValue){
+            if (paramValue == null) {
+                paramValue = '';
+            }
+            var pattern = new RegExp('\\b('+paramName+'=).*?(&|$)');
+            if (url.search(pattern) >= 0) {
+                return url.replace(pattern,'$1' + paramValue + '$2');
+            }
+            return url + (url.indexOf('?') > 0 ? '&' : '?') + paramName + '=' + paramValue;
+        }
+
+        function getAnnouncementMessage() {
+            // Your logic to get the announcement message goes here.
+            console.log('Fetching announcement message...');
+        }
+    </script>
 </head>
 
 <body class="bg-silver-300">
@@ -25,8 +64,8 @@
               
 		 <form id="login-form" name='f' th:action="@{/j_spring_security_check}" method='POST'>
         <div style="text-align: right;padding:5px;margin:5px 0px;">
-         <a th:href="@{/login?lang=en}">English/</a>
-         <a th:href="@{/login?lang=vi}">Vietnamese</a>
+         <a id="lang-en" href="#">English/</a>
+         <a id="lang-vi" href="#">Vietnamese</a>
       </div>
             <h2 class="login-title" th:uText="#{label.loginform}"></h2>
             <div class="form-group">

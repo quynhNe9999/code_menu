@@ -34,7 +34,7 @@ public class Product implements Serializable{
     @Column(name = "PRODUCT_ID",length = 20)
     private String productId;
     
-    @Column(name = "PRODUCT_Name",length = 20)
+    @Column(name = "PRODUCT_NAME",length = 20)
     private String productName;
     
     @Column(name = "PRODUCT_DESCRIPSION",length = 20)
