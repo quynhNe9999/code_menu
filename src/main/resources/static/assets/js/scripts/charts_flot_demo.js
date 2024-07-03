@@ -19,7 +19,7 @@ $(function() {
             tickDecimals: 0,
             mode: 'categories',
         },
-        colors: ["#3498db"],
+        colors: ["#e36110"],
         grid: {
             color: "#999999",
             hoverable: true,
@@ -96,7 +96,7 @@ $(function() {
     var data = [{
         label: "Sales 1",
         data: 33,
-        color: "#3498db",
+        color: "#e36110",
     }, {
         label: "Sales 2",
         data: 15,
@@ -230,7 +230,7 @@ $(function() {
 		selection: {
 			mode: "x"
 		},
-        colors: ["#3498db"],
+        colors: ["#e36110"],
         grid: {
 			markings: weekendAreas,
             color: "#999999",
@@ -249,7 +249,7 @@ $(function() {
 	var plot = $.plot("#flot_visitors", [d], options);
 
 	var overview = $.plot("#flot_visitors_overview", [d], {
-        colors: ["#3498db"],
+        colors: ["#e36110"],
         grid: {
             color: "#999999",
             hoverable: true,

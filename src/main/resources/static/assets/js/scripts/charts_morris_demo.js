@@ -17,7 +17,7 @@ $(function() {
         resize: true,
         lineWidth:4,
         labels: ['Value'],
-        lineColors: ['#3498db'],
+        lineColors: ['#e36110'],
         pointSize:5,
     });
 
@@ -86,7 +86,7 @@ $(function() {
         labels: ['Series A', 'Series B'],
         hideHover: 'auto',
         resize: true,
-        lineColors: ['#52a7e0','#3498db'],
+        lineColors: ['#52a7e0','#e36110'],
     });
 
 });
