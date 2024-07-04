@@ -45,7 +45,7 @@
                     </div>
                     <div class="ibox-body">
                         <!-- Form for adding new supplier -->
-                        <form th:action="@{/supplier/save}" method="post">
+                        <form th:action="@{/suppliers-list}" th:object = "${supplier}" method="post">
                             <div class="form-group row">
                                 <label class="col-lg-2 col-form-label" th:uText="#{label.view.supplier.name}"></label>
                                 <div class="col-lg-10">
