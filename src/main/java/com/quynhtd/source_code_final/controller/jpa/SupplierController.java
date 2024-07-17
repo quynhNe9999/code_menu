@@ -1,7 +1,6 @@
 package com.quynhtd.source_code_final.controller.jpa;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.quynhtd.source_code_final.entity.Supplier;
 import com.quynhtd.source_code_final.service.SupplierService;
 
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 @Controller
 @Transactional 
 public class SupplierController {

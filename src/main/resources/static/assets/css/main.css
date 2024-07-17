@@ -1221,7 +1221,7 @@ btn .caret {
     -ms-flex-align: center;
     align-items: center;
     height: 50px; }
-    .ibox .ibox-head .ibox-title {
+    .ibox .ibox-head .ibox-title{
       font-size: 16px;
       font-weight: 600; }
       .ibox .ibox-head .ibox-title small {

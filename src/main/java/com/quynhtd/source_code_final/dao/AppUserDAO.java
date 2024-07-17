@@ -20,7 +20,9 @@ import com.quynhtd.source_code_final.entity.AppRole;
 import com.quynhtd.source_code_final.entity.AppUser;
 import com.quynhtd.source_code_final.form.AppUserForm;
 import com.quynhtd.source_code_final.utils.EncrytedPasswordUtils;
- 
+
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 @Repository
 @Transactional
 public class AppUserDAO {

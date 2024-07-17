@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import com.quynhtd.source_code_final.entity.Customer;
 import com.quynhtd.source_code_final.repository.CustomerRepository;
 
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 @Service
 public class CustomerService {
 	  @Autowired

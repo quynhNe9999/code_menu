@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 
 import com.quynhtd.source_code_final.social.SocialUserDetailsImpl;
 
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 @Service
 public class SocialUserDetailsServiceImpl implements SocialUserDetailsService {
 
