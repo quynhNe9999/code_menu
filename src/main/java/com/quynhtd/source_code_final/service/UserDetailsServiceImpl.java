@@ -1,6 +1,7 @@
 package com.quynhtd.source_code_final.service;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,10 @@ import com.quynhtd.source_code_final.dao.AppRoleDAO;
 import com.quynhtd.source_code_final.dao.AppUserDAO;
 import com.quynhtd.source_code_final.entity.AppUser;
 import com.quynhtd.source_code_final.social.SocialUserDetailsImpl;
- 
+
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 @Transactional
 public class UserDetailsServiceImpl implements UserDetailsService {

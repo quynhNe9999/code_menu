@@ -52,7 +52,7 @@ $(function() {
     },
     markerStyle: {
       initial: {
-        fill  : '#3498db',
+        fill  : '#e36110',
         stroke: '#333'
       }
     },

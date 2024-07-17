@@ -46,8 +46,8 @@ public class Product implements Serializable{
     @Lob
     @Column(name = "IMAGE", length = Integer.MAX_VALUE)
     private byte[] image;
-    
-    @Temporal(TemporalType.TIMESTAMP)
+
+    @Temporal(TemporalType.DATE)
     @Column(name = "CREATE_DATE")
     private Date createDate;
 

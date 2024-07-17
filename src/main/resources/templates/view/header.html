@@ -70,14 +70,6 @@
                     <li>
                         <a class="nav-link sidebar-toggler js-sidebar-toggler"><i class="ti-menu"></i></a>
                     </li>
-                    <li>
-                        <form class="navbar-search" action="javascript:;">
-                            <div class="rel">
-                                <span class="search-icon"><i class="ti-search"></i></span>
-                                <input class="form-control" th:placeholder="#{button.search}" >
-                            </div>
-                        </form>
-                    </li>
                 </ul>
                 <!-- END TOP-LEFT TOOLBAR-->
                 
@@ -86,20 +78,15 @@
                 <!-- START TOP-RIGHT TOOLBAR-->
                 <ul class="nav navbar-toolbar">
  
-				<li class="dropdown dropdown-language">
-
-<!-- 						<select name="cars" id="cars">
-						  <option value="volvo">VN</option>
-						  <option value="saab">EN</option>
-
-						</select> -->
-  				    <div style="text-align: right; padding: 5px; margin: 5px 0px;">
-				        <a id="lang-en"  href="#">EN</a>
+<!-- 				<li class="dropdown dropdown-language">
+ -->
+ 				    <!-- <div style="text-align: right; padding: 5px; margin: 5px 0px; color:#fff ;"> 
+				        <a class="nav-link dropdown-toggle link" id="lang-en"  href="#">EN</a>
 				        <samp>|</samp>
-				        <a id="lang-vi"  href="#">VN</a>
-				    </div> 
+				        <a class="nav-link dropdown-toggle link" id="lang-vi"  href="#">VN</a>
+				    </div>  -->
                         <!-- /.row -->
-				</li>
+			<!-- 	</li> -->
 				<li class="dropdown dropdown-user">
                         <a class="nav-link dropdown-toggle link" data-toggle="dropdown">
                             <img src="./assets/img/admin-avatar.png" />
@@ -107,9 +94,13 @@
                         <ul class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="profile"><i class="fa fa-user" th:uText="#{label.profile}"></i></a>
                             <a class="dropdown-item" href="profile"><i class="fa fa-cog" th:uText="#{label.setting}"></i></a>
-                            <a class="dropdown-item" href="profile"><i class="fa fa-support" th:uText="#{label.support}"></i></a>
+                            
+                            <li class="dropdown-divider"></li>
+                            <a id="lang-en" href="#">English</a>
+                            <a id="lang-vi" href="#">Vietnamese</a>
                             <li class="dropdown-divider"></li>
                             <a class="dropdown-item" th:href="@{/logout}"><i class="fa fa-power-off"  th:uText="#{button.logout}"></i></a>
+
                         </ul>
                     </li>
 
