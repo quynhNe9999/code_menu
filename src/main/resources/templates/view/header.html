@@ -78,15 +78,15 @@
                 <!-- START TOP-RIGHT TOOLBAR-->
                 <ul class="nav navbar-toolbar">
  
-<!-- 				<li class="dropdown dropdown-language">
- -->
- 				    <!-- <div style="text-align: right; padding: 5px; margin: 5px 0px; color:#fff ;"> 
-				        <a class="nav-link dropdown-toggle link" id="lang-en"  href="#">EN</a>
-				        <samp>|</samp>
-				        <a class="nav-link dropdown-toggle link" id="lang-vi"  href="#">VN</a>
-				    </div>  -->
+ 				<li class="dropdown dropdown-language">
+
+ 				     <div style="text-align: right; padding: 5px; margin: 5px 0px; color:#fff ;"> 
+				        <a  id="lang-en" href="#" >EN /</a>
+				        <a  id="lang-vi" href="#">VN</a>
+				    </div>  
                         <!-- /.row -->
-			<!-- 	</li> -->
+			 	</li> 
+
 				<li class="dropdown dropdown-user">
                         <a class="nav-link dropdown-toggle link" data-toggle="dropdown">
                             <img src="./assets/img/admin-avatar.png" />
@@ -98,9 +98,7 @@
                             <a class="dropdown-item" th:href="@{/logout}"><i class="fa fa-power-off"  th:uText="#{button.logout}"></i></a>
 
                         </ul>
-                            <li class="dropdown-divider"></li>
-                            <a id="lang-en"  href="#">EN /</a>
-                            <a id="lang-vi" href="#"> VN</a>
+
                     </li>
 
                 </ul>
