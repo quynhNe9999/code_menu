@@ -9,12 +9,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.quynhtd.source_code_final.entity.Imports;
+import com.quynhtd.source_code_final.entity.Store;
 import com.quynhtd.source_code_final.service.ImportService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -39,18 +41,19 @@ public class ImportsController {
         return "imports"; // Trả về tên của view để render
     }
 
-
     @RequestMapping(value = { "imports-add" }, method = RequestMethod.GET)
-    public ResponseEntity<Imports> getImportsById(@PathVariable("id") Long id) {
-        Optional<Imports> imports = importService.getImportsById(id);
-        return imports.map(ResponseEntity::ok)
-                       .orElse(ResponseEntity.notFound().build());
+    public String getStoreAdd( Model model) {
+//        Optional<Store> Store = storeService.getStoreById(id);
+    	Imports imports = new Imports();
+		model.addAttribute("imports", imports);
+		return "imports-add";
     }
 
-    @RequestMapping(value = { "imports-add}" }, method = RequestMethod.POST)
-    public ResponseEntity<Imports> createImports(@RequestBody Imports imports) {
-        Imports createdImports = importService.createImports(imports);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdImports);
+    @RequestMapping(value = { "imports-list" }, method = RequestMethod.POST)
+    public String createStore(@ModelAttribute("store")  Imports imports) {
+    	importService.createImports(imports);
+        return"redirect:/imports-list";
+//        return ResponseEntity.status(HttpStatus.CREATED).body(createdStore);
     }
 
     @RequestMapping(value = { "imports-edit/{id}" }, method = RequestMethod.PUT)
