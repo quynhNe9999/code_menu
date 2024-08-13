@@ -20,46 +20,38 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.quynhtd.source_code_final.entity.Product;
-import com.quynhtd.source_code_final.service.ProductService;
+import com.quynhtd.source_code_final.entity.ImageGallery;
+import com.quynhtd.source_code_final.service.ImageGalleryService;
 
-import lombok.extern.slf4j.Slf4j;
-@Slf4j
+
 @Controller
-@Transactional 
-public class ProductsController {
-
-
-    @Autowired
-    private ProductService productService;
-
-
+public class ImageGalleryController {
+	
 	@Value("${uploadDir}")
 	private String uploadFolder;
 
+	@Autowired
+	private ImageGalleryService imageGalleryService;
 
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 
-//	@GetMapping(value = { "/home"})
-//	public String addProductPage() {
-//		return "index";
-//	}
+	@GetMapping(value = {"/home"})
+	public String addProductPage() {
+		return "home";
+	}
 
-	@PostMapping("/product/saveproductDetails")
-	public @ResponseBody ResponseEntity<?> createProduct(@RequestParam("productName") String productName,
-			@RequestParam("productPrice") double productPrice, @RequestParam("productDescripsion") String productDescripsion, Model model, HttpServletRequest request
-			,final @RequestParam("product") MultipartFile file) {
+	@PostMapping("/image/saveImageDetails")
+	public @ResponseBody ResponseEntity<?> createProduct(@RequestParam("name") String name,
+			@RequestParam("price") double price, @RequestParam("description") String description, Model model, HttpServletRequest request
+			,final @RequestParam("image") MultipartFile file) {
 		try {
 			//String uploadDirectory = System.getProperty("user.dir") + uploadFolder;
 			String uploadDirectory = request.getServletContext().getRealPath(uploadFolder);
@@ -71,12 +63,12 @@ public class ProductsController {
 				model.addAttribute("invalid", "Sorry! Filename contains invalid path sequence \" + fileName");
 				return new ResponseEntity<>("Sorry! Filename contains invalid path sequence " + fileName, HttpStatus.BAD_REQUEST);
 			}
-			String[] names = productName.split(",");
-			String[] Descriptions = productDescripsion.split(",");
+			String[] names = name.split(",");
+			String[] descriptions = description.split(",");
 			Date createDate = new Date();
 			log.info("Name: " + names[0]+" "+filePath);
-			log.info("productDescripsion: " + Descriptions[0]);
-			log.info("productPrice: " + productPrice);
+			log.info("description: " + descriptions[0]);
+			log.info("price: " + price);
 			try {
 				File dir = new File(uploadDirectory);
 				if (!dir.exists()) {
@@ -92,13 +84,13 @@ public class ProductsController {
 				e.printStackTrace();
 			}
 			byte[] imageData = file.getBytes();
-			Product product = new Product();
-			product.setProductName(names[0]);
-			product.setImage(imageData);
-			product.setProductPrice(productPrice);
-			product.setProductDescripsion(Descriptions[0]);
-			product.setCreateDate(createDate);
-			productService.saveProduct(product);
+			ImageGallery imageGallery = new ImageGallery();
+			imageGallery.setName(names[0]);
+			imageGallery.setImage(imageData);
+			imageGallery.setPrice(price);
+			imageGallery.setDescription(descriptions[0]);
+			imageGallery.setCreateDate(createDate);
+			imageGalleryService.saveImage(imageGallery);
 			log.info("HttpStatus===" + new ResponseEntity<>(HttpStatus.OK));
 			return new ResponseEntity<>("Product Saved With File - " + fileName, HttpStatus.OK);
 		} catch (Exception e) {
@@ -108,31 +100,31 @@ public class ProductsController {
 		}
 	}
 	
-	@GetMapping("/product/display/{id}")
+	@GetMapping("/image/display/{id}")
 	@ResponseBody
-	void showImage(@PathVariable("id") Long id, HttpServletResponse response, Optional<Product> product)
+	void showImage(@PathVariable("id") Long id, HttpServletResponse response, Optional<ImageGallery> imageGallery)
 			throws ServletException, IOException {
 		log.info("Id :: " + id);
-		product = productService.getProductById(id);
+		imageGallery = imageGalleryService.getImageById(id);
 		response.setContentType("image/jpeg, image/jpg, image/png, image/gif");
-		response.getOutputStream().write(product.get().getImage());
+		response.getOutputStream().write(imageGallery.get().getImage());
 		response.getOutputStream().close();
 	}
 
-	@GetMapping("/product/productDetails")
-	String showProductDetails(@RequestParam("id") Long id, Optional<Product> product, Model model) {
+	@GetMapping("/image/imageDetails")
+	String showProductDetails(@RequestParam("id") Long id, Optional<ImageGallery> imageGallery, Model model) {
 		try {
 			log.info("Id :: " + id);
 			if (id != 0) {
-				product = productService.getProductById(id);
+				imageGallery = imageGalleryService.getImageById(id);
 			
-				log.info("products :: " + product);
-				if (product.isPresent()) {
-					model.addAttribute("id", product.get().getId());
-					model.addAttribute("productDescription", product.get().getProductDescripsion());
-					model.addAttribute("productName", product.get().getProductName());
-					model.addAttribute("productPrice", product.get().getProductPrice());
-					return "products";
+				log.info("products :: " + imageGallery);
+				if (imageGallery.isPresent()) {
+					model.addAttribute("id", imageGallery.get().getId());
+					model.addAttribute("description", imageGallery.get().getDescription());
+					model.addAttribute("name", imageGallery.get().getName());
+					model.addAttribute("price", imageGallery.get().getPrice());
+					return "imagedetails";
 				}
 				return "redirect:/home";
 			}
@@ -143,17 +135,11 @@ public class ProductsController {
 		}	
 	}
 
-	@GetMapping("/product-list")
+	@GetMapping("/image/show")
 	String show(Model map) {
-		List<Product> product = productService.getAllProducts();
-		map.addAttribute("products", product);
-		return "product";
+		List<ImageGallery> images = imageGalleryService.getAllActiveImages();
+		map.addAttribute("images", images);
+		return "images";
 	}
-	
-    @RequestMapping(value = { "product/{id}" }, method = RequestMethod.GET)
-    public String deleteStore(@PathVariable("id") Long id) {
-        boolean deleted = productService.deleteProduct(id);
-        return "redirect:/product-list";
-    }
 }	
 

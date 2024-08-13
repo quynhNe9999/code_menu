@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="vi"
+xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -44,7 +45,7 @@
                     <div class="ibox-head">
                         <div class="ibox-title" th:uText="#{label.module.storelist}"></div>
                         <div>
-                        <a th:href="@{store-add}" class="btn btn-info" th:uText="#{view.button.add}" ></a>
+                        <a th:href="@{store-add}" class="btn btn-success" th:uText="#{view.button.add}" ></a>
                         </div>
                     </div>
                     <div class="ibox-body">
@@ -60,16 +61,6 @@
                             
                                 </tr>
                             </thead>
-<!--                             <tfoot>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Position</th>
-                                    <th>Office</th>
-                                    <th>Age</th>
-                                    <th>Start date</th>
-                                    <th>Salary</th>
-                                </tr>
-                            </tfoot> -->
                             <tbody>
 					          <tr th:each="store : ${stores}">
 					                <td th:text="${store.id}"></td>
@@ -78,10 +69,11 @@
 					                <td th:text="${store.phoneNumber}"></td>
 					                <td th:text="${store.address}"></td>
 					                <td>
-					                	<a th:href="@{store-edit/{id}(id=${store.id})}" class="btn btn-warning" 
-					                	th:uText="#{view.button.edit}"></a> 
-					                	<a th:href="@{store/{id}(id=${store.id})}" class="btn btn-danger" 
-					                	th:uText="#{view.button.delete}"></a>
+					                	<a th:href="@{store-edit/{id}(id=${store.id})}" class="btn ti-pencil" ></a> 
+<!-- 					                	<a th:href="@{store/{id}(id=${store.id})}" class="btn btn-danger" 
+					                	th:uText="#{view.button.delete}"></a> -->
+					                	<a th:href="@{store-list/{id}(id=${store.id})}" class="btn ti-pencil" >view</a> 
+					                	
 					                </td>
 					            </tr>
                             </tbody>
@@ -89,10 +81,10 @@
                         </table>
                     </div>
                 </div>
-                
-            <!-- END PAGE CONTENT-->
-             <th:block th:include="/view/footer"></th:block>
-
+                <th:block th:include="/view/footer"></th:block>
+                </div>
+                </div>
+                </div>
     <!-- END THEME CONFIG PANEL-->
     <!-- BEGIN PAGA BACKDROPS-->
     <div class="sidenav-backdrop backdrop"></div>

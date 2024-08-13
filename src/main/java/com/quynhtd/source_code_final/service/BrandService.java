@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 import com.quynhtd.source_code_final.entity.Brand;
 import com.quynhtd.source_code_final.repository.BrandRepository;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class BrandService {
     @Autowired

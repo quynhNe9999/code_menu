@@ -3,11 +3,9 @@ package com.quynhtd.source_code_final.controller;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.social.connect.Connection;
@@ -22,7 +20,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.request.WebRequest;
@@ -36,6 +33,9 @@ import com.quynhtd.source_code_final.utils.SecurityUtil;
 import com.quynhtd.source_code_final.utils.WebUtils;
 import com.quynhtd.source_code_final.validator.AppUserValidator;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Controller
 @Transactional
 public class MainController {

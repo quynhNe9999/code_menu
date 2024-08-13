@@ -14,8 +14,10 @@ import org.springframework.social.security.SpringSocialConfigurer;
 
 import com.quynhtd.source_code_final.entity.AppRole;
 
+import lombok.extern.slf4j.Slf4j;
 
 
+@Slf4j
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {

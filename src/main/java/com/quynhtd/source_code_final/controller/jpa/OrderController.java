@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.quynhtd.source_code_final.entity.Order;
 import com.quynhtd.source_code_final.service.OrderService;
 
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 @Controller
 @Transactional 
 public class OrderController {

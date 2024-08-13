@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="vi"
+ xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -44,7 +45,7 @@
                     <div class="ibox-head">
                         <div class="ibox-title" th:uText="#{label.module.customerlist}"></div>
                         <div>
-                        <a th:href="@{customer-add}" class="btn btn-info" th:uText="#{view.button.add}" ></a>
+                        <a th:href="@{customer-add}" class="btn btn-success" th:uText="#{view.button.add}" ></a>
                         </div>
                     </div>
                     <div class="ibox-body">
@@ -86,12 +87,15 @@
 					            </tr>
                             </tbody>
 					                                        
-                        </table>
+                        </table>                        
                     </div>
+                </div>
+                <th:block th:include="/view/footer"></th:block>
+                </div>
+                </div>
                 </div>
                 
             <!-- END PAGE CONTENT-->
-             <th:block th:include="/view/footer"></th:block>
 
     <!-- END THEME CONFIG PANEL-->
     <!-- BEGIN PAGA BACKDROPS-->

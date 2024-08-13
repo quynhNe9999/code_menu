@@ -12,6 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.quynhtd.source_code_final.entity.UserConnection;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Repository
 @Transactional
 public class UserConnectionDAO {

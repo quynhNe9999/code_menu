@@ -28,6 +28,8 @@ import org.springframework.social.twitter.connect.TwitterConnectionFactory;
 import com.quynhtd.source_code_final.dao.AppUserDAO;
 import com.quynhtd.source_code_final.social.ConnectionSignUpImpl;
 
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 @Configuration
 @EnableSocial
 //Load to Environment.

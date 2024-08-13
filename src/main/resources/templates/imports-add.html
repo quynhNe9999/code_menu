@@ -32,7 +32,7 @@ xmlns:th="http://www.thymeleaf.org">
         <div class="content-wrapper">
             <!-- START PAGE CONTENT-->
             <div class="page-heading">
-                <h1 class="page-title" th:uText="#{label.module.supplier}"></h1>
+                <h1 class="page-title" th:uText="#{label.module.imports}"></h1>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
                         <a href="index"><i class="la la-home font-20"></i></a>
@@ -42,41 +42,24 @@ xmlns:th="http://www.thymeleaf.org">
             <div class="page-content fade-in-up">
                 <div class="ibox">
                     <div class="ibox-head">
-                        <div class="ibox-title" th:uText="#{label.module.supplieradd}"></div>
+                        <div class="ibox-title" th:uText="#{label.module.importsadd}"></div>
                     </div>
                     <div class="ibox-body">
-                        <!-- Form for adding new supplier -->
-                        <form th:action="@{/suppliers-list}" th:object = "${supplier}" method="post">
+                        <!-- Form for adding new imports -->
+                        <form th:action="@{/imports-list}" th:object = "${imports}" method="post">
                             <div class="form-group row">
-                                <label class="col-lg-2 col-form-label" th:uText="#{label.view.supplier.name}"></label>
+                                <label class="col-lg-2 col-form-label" th:uText="#{label.view.imports.impostDate}"></label>
                                 <div class="col-lg-10">
-                                    <input type="text" class="form-control" name="name" th:placeholder="#{label.view.supplier.name}" required />
+                                    <input type="date" class="form-control" th:name="impostDate" th:placeholder="#{label.view.imports.impostDate}"  /><!-- required -->
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-lg-2 col-form-label" th:uText="#{label.view.supplier.contactName}"></label>
+                                <label class="col-lg-2 col-form-label" th:uText="#{label.view.imports.totalCost}"></label>
                                 <div class="col-lg-10">
-                                    <input type="text" class="form-control" name="contactName" th:placeholder="#{label.view.supplier.contactName}" required />
+                                    <input type="number" class="form-control" th:name="totalCost" th:placeholder="#{label.view.imports.totalCost}" required />
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <label class="col-lg-2 col-form-label" th:uText="#{label.view.supplier.contactPhone}"></label>
-                                <div class="col-lg-10">
-                                    <input type="text" class="form-control" name="contactPhone" th:placeholder="#{label.view.supplier.contactPhone}" required />
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-lg-2 col-form-label" th:uText="#{label.view.supplier.contactEmail}"></label>
-                                <div class="col-lg-10">
-                                    <input type="email" class="form-control" name="contactEmail" th:placeholder="#{label.view.supplier.contactEmail}" required />
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-lg-2 col-form-label" th:uText="#{label.view.supplier.address}"></label>
-                                <div class="col-lg-10">
-                                    <input type="text" class="form-control" name="address" th:placeholder="#{label.view.supplier.address}" required />
-                                </div>
-                            </div>
+                            
                             <div class="form-group row">
                                 <div class="col-lg-10 offset-lg-2">
                                     <button type="submit" class="btn btn-success" th:uText="#{view.button.save}"></button>
